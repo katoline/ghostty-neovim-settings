@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# 環境ごとの値・秘密情報（Git 管理外のローカル専用ファイル）
+*.local.ghostty
+*.local.lua
+.env
+.env.*
+
+# setup.sh が退避したバックアップ
+*.backup.*
