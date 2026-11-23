@@ -6,6 +6,8 @@ LazyVim 用の追加設定です。
 
 - toggleterm.nvim の導入（`nvim.lua`）
 - `<leader>tv`: 右側にターミナルを縦分割で開く（`keymaps.lua`）
+- LazyVim 標準のターミナル（`<C-/>`・`<leader>ft`・`<leader>fT`）を、下ではなく右側（画面幅の 40%）に開く（`keymaps.lua`）
+- Ghostty の Cmd+J でターミナル、Cmd+B で左側のファイル一覧を開閉する（`keymaps.lua` と `ghostty/keymaps.ghostty`）
 
 キーボードショートカット一覧は [KEYMAPS.md](KEYMAPS.md) を参照してください。
 
