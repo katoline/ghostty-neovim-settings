@@ -5,3 +5,19 @@
 # 例:
 # keybind = ctrl+shift+n=new_window
 # keybind = cmd+shift+d=new_split:right
+
+# Cmd+J で Neovim の右側ターミナルを開閉する
+# Cmd 付きのキーは Neovim に届かないので、Ctrl+/ と同じ制御文字（0x1f = <C-_>）を送る。
+# Neovim 側は nvim/keymaps.lua で <C-_> を「右側にターミナルを開閉」に割り当てている。
+# Ghostty 標準の Cmd+J（scroll_to_selection：選択範囲までスクロール）は上書きされる。
+# Neovim の外（zsh）で押すと、Ctrl+_ と同じ「直前の入力を取り消す」になる。
+keybind = super+j=text:\x1f
+
+# Cmd+B で Neovim の左側ファイル一覧（エクスプローラー）を開閉する
+# Ctrl+^（0x1e = <C-^>）を送り、Neovim 側は nvim/keymaps.lua で受け取る。
+# Ghostty 標準では Cmd+B に割り当ては無い。zsh で押しても何も起きない。
+keybind = super+b=text:\x1e
+
+# Cmd+T で Ghostty の新しいタブを開く（Neovim を開いていても Ghostty が先に処理する）
+# Ghostty 標準と同じ割り当てだが、意図した割り当てとして明示しておく
+keybind = super+t=new_tab
