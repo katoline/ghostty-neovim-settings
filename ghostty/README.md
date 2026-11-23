@@ -32,6 +32,11 @@ WezTerm 版との違い:
 
 ### 3. キーマップ
 - 追加のキーバインドを設定できます
+- `Cmd+J`: Neovim の右側ターミナルを開閉します。Ctrl+/ と同じ制御文字（0x1f）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
+  - Ghostty 標準の `Cmd+J`（選択範囲までスクロール）は上書きされます
+  - Neovim の外（zsh）で押すと、Ctrl+_ と同じく直前の入力の取り消しになります
+- `Cmd+B`: Neovim の左側ファイル一覧（エクスプローラー）を開閉します。Ctrl+^ と同じ制御文字（0x1e）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
+  - Ghostty 標準では `Cmd+B` に割り当てはありません。zsh で押しても何も起きません
 - 設定ファイル: `keymaps.ghostty`
 
 ### 4. 環境変数
