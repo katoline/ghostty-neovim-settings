@@ -1,0 +1,18 @@
+# Ghostty メイン設定ファイル
+# 各機能ごとのファイルを読み込むだけの役割（WezTerm の wezterm.lua に相当）
+# config-file のパスは、この指示を書いたファイルからの相対パス
+# 読み込みは、このファイルを全部読み終えた後に行われる
+
+# 透過設定とショートカット（background-opacity / Ctrl+Shift+T）
+config-file = transparency.ghostty
+
+# 追加のキーバインド
+config-file = keymaps.ghostty
+
+# 環境変数
+config-file = env.ghostty
+
+# 環境ごとの値・秘密情報（Git 管理外。ファイルが無くてもエラーにしない）
+config-file = ?env.local.ghostty
+
+# シェルは設定しない（既定のログインシェル = zsh を使う）

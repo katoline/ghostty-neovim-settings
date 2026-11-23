@@ -1,0 +1,14 @@
+# 透過設定とショートカット
+# 起動時は透過状態。Ctrl+Shift+T で不透明と切り替える
+
+# 背景の不透明度（0 = 完全に透明、1 = 不透明）
+# 変更したときは Ghostty の完全な再起動が必要
+background-opacity = 0.75
+
+# 明示的な背景色を持つセル（Neovim の背景など）にも透過をかける
+# （WezTerm の text_background_opacity 相当）
+background-opacity-cells = true
+
+# Ctrl+Shift+T で透過と不透明を切り替える（macOS のみ）
+# 切り替えは全ウィンドウに同時にかかる。フルスクリーン中は効かない
+keybind = ctrl+shift+t=toggle_background_opacity

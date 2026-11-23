@@ -1,0 +1,7 @@
+# 追加のキーバインド
+# 追加の keybind があればここに書く
+# 書式: keybind = <修飾キー+キー>=<アクション>
+#
+# 例:
+# keybind = ctrl+shift+n=new_window
+# keybind = cmd+shift+d=new_split:right
