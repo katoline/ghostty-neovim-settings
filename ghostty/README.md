@@ -8,7 +8,7 @@
 ghostty/
 ├── config.ghostty        # メイン設定ファイル（各ファイルを読み込む）
 ├── transparency.ghostty  # 透過設定とショートカット
-├── text.ghostty          # 文字の見やすさ（太さ・薄い文字・灰色）
+├── text.ghostty          # 文字の見やすさと配色（太さ・薄い文字・灰色・緑）
 ├── keymaps.ghostty       # キーマップ設定
 ├── env.ghostty           # 環境変数設定
 └── setup.sh              # セットアップスクリプト
@@ -31,12 +31,13 @@ WezTerm 版との違い:
 - 切り替えは全ウィンドウに同時にかかります（WezTerm 版はウィンドウごと）
 - フルスクリーン中は切り替えが効きません
 
-### 3. 文字の見やすさ
+### 3. 文字の見やすさと配色
 - 透過時に文字が薄く見えないよう、少し濃くしています
 - `font-thicken = true`（強さ 128）: 文字の線を太めに描きます（macOS のみ）
   - macOS 本体のフォントスムージング設定は Ghostty には効きません。太さはこの設定で調整します
 - `faint-opacity = 0.7`: 薄い文字（faint）の不透明度を既定の 0.5 から上げています
 - `palette = 8=#8a8a8a`: 灰色（bright black）を既定の `#666666` から明るくしています
+- `palette = 2=#1aa031`: 緑をターミナル.app（dotfiles の配色）と同じ色にしています。既定の `#b5bd68` は黄土色で、プロンプト（Powerlevel10k）の Git 欄が、変更が無い状態（緑）でも黄色に見えていたためです
 - 設定ファイル: `text.ghostty`
 
 ### 4. キーマップ
@@ -144,7 +145,7 @@ env = CUSTOM_VAR=value
 
 - **config.ghostty**: メイン設定ファイル。各ファイルを `config-file` で読み込みます
 - **transparency.ghostty**: 透過機能とショートカット設定
-- **text.ghostty**: 文字の見やすさ（太さ・薄い文字・灰色）
+- **text.ghostty**: 文字の見やすさと配色（太さ・薄い文字・灰色・緑）
 - **keymaps.ghostty**: 追加のキーマップ設定
 - **env.ghostty**: 環境変数の設定
 
