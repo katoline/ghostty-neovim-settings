@@ -8,7 +8,9 @@ font-thicken = true
 font-thicken-strength = 128
 
 # 薄い文字（SGR 2 / faint）の不透明度。既定は 0.5
-faint-opacity = 0.7
+# コーディングエージェント（Claude Code など）は思考や補足を faint で出すため、透過中でも読めるよう高めにする
+# まだ薄ければ 1（薄くしない）にする
+faint-opacity = 0.9
 
 # 灰色（パレット 8 = bright black）を少し明るくする。既定は #666666
 # git のヒントや zsh の補完候補など、コマンドの補足表示によく使われる色

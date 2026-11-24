@@ -1,0 +1,10 @@
+# SSH 接続
+# Ghostty は TERM=xterm-ghostty を使うが、接続先の PC はこの端末の種類を知らないことが多い。
+# そのままだと「missing or unsuitable terminal: xterm-ghostty」などのエラーが出たり、
+# 表示や Backspace が崩れたりする（ターミナル.app や WebStorm は xterm-256color を渡すので起きない）
+
+# ssh-env: ssh コマンドで接続するときだけ TERM を xterm-256color に変えて渡す
+# （シェル統合が ssh を包む関数を用意する。zsh では自動で読み込まれる）
+# ssh-terminfo（接続先に Ghostty の terminfo を自動で入れる）は、接続先のファイルを書き換えるので有効にしない
+# 既定値は cursor,no-sudo,title,no-ssh-env,no-ssh-terminfo,path。ここでは ssh-env だけを足す
+shell-integration-features = ssh-env

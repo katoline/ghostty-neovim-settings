@@ -9,6 +9,7 @@ ghostty/
 ├── config.ghostty        # メイン設定ファイル（各ファイルを読み込む）
 ├── transparency.ghostty  # 透過設定とショートカット
 ├── text.ghostty          # 文字の見やすさと配色（太さ・薄い文字・灰色・緑）
+├── ssh.ghostty           # SSH 接続先で TERM のエラーを出さない
 ├── keymaps.ghostty       # キーマップ設定
 ├── env.ghostty           # 環境変数設定
 └── setup.sh              # セットアップスクリプト
@@ -35,12 +36,19 @@ WezTerm 版との違い:
 - 透過時に文字が薄く見えないよう、少し濃くしています
 - `font-thicken = true`（強さ 128）: 文字の線を太めに描きます（macOS のみ）
   - macOS 本体のフォントスムージング設定は Ghostty には効きません。太さはこの設定で調整します
-- `faint-opacity = 0.7`: 薄い文字（faint）の不透明度を既定の 0.5 から上げています
+- `faint-opacity = 0.9`: 薄い文字（faint）の不透明度を既定の 0.5 から上げています。コーディングエージェント（Claude Code など）は思考や補足を faint で出すため、透過中でも読めるようにしています
 - `palette = 8=#8a8a8a`: 灰色（bright black）を既定の `#666666` から明るくしています
 - `palette = 2=#1aa031`: 緑をターミナル.app（dotfiles の配色）と同じ色にしています。既定の `#b5bd68` は黄土色で、プロンプト（Powerlevel10k）の Git 欄が、変更が無い状態（緑）でも黄色に見えていたためです
 - 設定ファイル: `text.ghostty`
 
-### 4. キーマップ
+### 4. SSH 接続
+- `shell-integration-features = ssh-env`: `ssh` コマンドで接続するときだけ、`TERM` を `xterm-ghostty` から `xterm-256color` に変えて渡します
+  - Ghostty の既定のままだと、接続先が `xterm-ghostty` を知らないため「missing or unsuitable terminal」などのエラーが出たり、表示や Backspace が崩れたりします（ターミナル.app や WebStorm は `xterm-256color` を渡すので起きません）
+  - 接続先に Ghostty の terminfo を自動で入れる `ssh-terminfo` は、接続先のファイルを書き換えるので有効にしていません
+  - シェル統合が zsh に `ssh` を包む関数を用意する仕組みのため、設定の変更後は新しいタブかウィンドウで確認します
+- 設定ファイル: `ssh.ghostty`
+
+### 5. キーマップ
 - 追加のキーバインドを設定できます
 - `Cmd+J`: Neovim の右側ターミナルを開閉します。Ctrl+/ と同じ制御文字（0x1f）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
   - Ghostty 標準の `Cmd+J`（選択範囲までスクロール）は上書きされます
@@ -49,7 +57,7 @@ WezTerm 版との違い:
   - Ghostty 標準では `Cmd+B` に割り当てはありません。zsh で押しても何も起きません
 - 設定ファイル: `keymaps.ghostty`
 
-### 5. 環境変数
+### 6. 環境変数
 - Ghostty 内で使用する環境変数を設定できます
 - 設定ファイル: `env.ghostty`
 
@@ -146,6 +154,7 @@ env = CUSTOM_VAR=value
 - **config.ghostty**: メイン設定ファイル。各ファイルを `config-file` で読み込みます
 - **transparency.ghostty**: 透過機能とショートカット設定
 - **text.ghostty**: 文字の見やすさと配色（太さ・薄い文字・灰色・緑）
+- **ssh.ghostty**: SSH 接続時の TERM の扱い
 - **keymaps.ghostty**: 追加のキーマップ設定
 - **env.ghostty**: 環境変数の設定
 
