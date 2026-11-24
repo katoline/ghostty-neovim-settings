@@ -8,6 +8,7 @@
 ghostty/
 ├── config.ghostty        # メイン設定ファイル（各ファイルを読み込む）
 ├── transparency.ghostty  # 透過設定とショートカット
+├── text.ghostty          # 文字の見やすさ（太さ・薄い文字・灰色）
 ├── keymaps.ghostty       # キーマップ設定
 ├── env.ghostty           # 環境変数設定
 └── setup.sh              # セットアップスクリプト
@@ -30,7 +31,15 @@ WezTerm 版との違い:
 - 切り替えは全ウィンドウに同時にかかります（WezTerm 版はウィンドウごと）
 - フルスクリーン中は切り替えが効きません
 
-### 3. キーマップ
+### 3. 文字の見やすさ
+- 透過時に文字が薄く見えないよう、少し濃くしています
+- `font-thicken = true`（強さ 128）: 文字の線を太めに描きます（macOS のみ）
+  - macOS 本体のフォントスムージング設定は Ghostty には効きません。太さはこの設定で調整します
+- `faint-opacity = 0.7`: 薄い文字（faint）の不透明度を既定の 0.5 から上げています
+- `palette = 8=#8a8a8a`: 灰色（bright black）を既定の `#666666` から明るくしています
+- 設定ファイル: `text.ghostty`
+
+### 4. キーマップ
 - 追加のキーバインドを設定できます
 - `Cmd+J`: Neovim の右側ターミナルを開閉します。Ctrl+/ と同じ制御文字（0x1f）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
   - Ghostty 標準の `Cmd+J`（選択範囲までスクロール）は上書きされます
@@ -39,7 +48,7 @@ WezTerm 版との違い:
   - Ghostty 標準では `Cmd+B` に割り当てはありません。zsh で押しても何も起きません
 - 設定ファイル: `keymaps.ghostty`
 
-### 4. 環境変数
+### 5. 環境変数
 - Ghostty 内で使用する環境変数を設定できます
 - 設定ファイル: `env.ghostty`
 
@@ -135,6 +144,7 @@ env = CUSTOM_VAR=value
 
 - **config.ghostty**: メイン設定ファイル。各ファイルを `config-file` で読み込みます
 - **transparency.ghostty**: 透過機能とショートカット設定
+- **text.ghostty**: 文字の見やすさ（太さ・薄い文字・灰色）
 - **keymaps.ghostty**: 追加のキーマップ設定
 - **env.ghostty**: 環境変数の設定
 

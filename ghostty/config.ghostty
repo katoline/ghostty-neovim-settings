@@ -6,6 +6,9 @@
 # 透過設定とショートカット（background-opacity / Ctrl+Shift+T）
 config-file = transparency.ghostty
 
+# 文字の見やすさ（線の太さ・薄い文字・灰色を少し濃くする）
+config-file = text.ghostty
+
 # 追加のキーバインド
 config-file = keymaps.ghostty
 
