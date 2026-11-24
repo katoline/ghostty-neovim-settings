@@ -9,6 +9,9 @@ config-file = transparency.ghostty
 # 文字の見やすさと配色（線の太さ・薄い文字・灰色・緑）
 config-file = text.ghostty
 
+# SSH 接続先で TERM のエラーが出ないようにする
+config-file = ssh.ghostty
+
 # 追加のキーバインド
 config-file = keymaps.ghostty
 
