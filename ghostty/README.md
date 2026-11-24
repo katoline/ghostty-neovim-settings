@@ -50,11 +50,21 @@ WezTerm 版との違い:
 
 ### 5. キーマップ
 - 追加のキーバインドを設定できます
-- `Cmd+J`: Neovim の右側ターミナルを開閉します。Ctrl+/ と同じ制御文字（0x1f）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
+- `Cmd+J`: Neovim の右側ターミナル列をまとめて開閉します。Ctrl+/ と同じ制御文字（0x1f）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
   - Ghostty 標準の `Cmd+J`（選択範囲までスクロール）は上書きされます
   - Neovim の外（zsh）で押すと、Ctrl+_ と同じく直前の入力の取り消しになります
 - `Cmd+B`: Neovim の左側ファイル一覧（エクスプローラー）を開閉します。Ctrl+^ と同じ制御文字（0x1e）を送り、Neovim 側（`nvim/keymaps.lua`）がそれを受け取ります
   - Ghostty 標準では `Cmd+B` に割り当てはありません。zsh で押しても何も起きません
+- `Cmd+Z` / `Cmd+Shift+Z` / `Cmd+A` / `Cmd+F`: Neovim 内の元に戻す / やり直す / 全選択 / ファイル内検索として使えるよう、Ghostty 標準の割り当てを `unbind` して Neovim に渡します
+  - Neovim 0.10 以降の TUI は kitty キーボードプロトコルを有効にするため、Ghostty で割り当ての無い Cmd キーは `<D-z>` などとして Neovim に届きます
+  - 代わりに Neovim の外（zsh）では、Ghostty 標準の `Cmd+Z`（閉じたタブ・分割を戻す）・`Cmd+Shift+Z`（そのやり直し）・`Cmd+A`（画面の全選択）・`Cmd+F`（画面内検索）が使えなくなります
+  - 閉じたタブの復元は `Cmd+Shift+T`（Ghostty 既定の undo）で代用できます
+- `Cmd+Shift+J`: Neovim の右側ターミナルの一番下に新しいターミナルを追加します。`super+shift+j` を `unbind` して `<D-J>` として Neovim に渡します
+  - Ghostty 標準の `Cmd+Shift+J`（画面の内容をファイルに書き出し、そのパスを貼り付け）は使えなくなります
+- `Cmd+C`: `performable:super+c=copy_to_clipboard:mixed` にしています。Ghostty 側に選択があるとき（シェルなど）は従来どおり Ghostty がコピーし、選択が無いときはキーを消費せず Neovim に `<D-c>` として渡します（Neovim 側で選択範囲をコピー）
+- `Cmd+S` / `Cmd+X` / `Cmd+P`: Ghostty 標準の割り当てが無いため、そのまま `<D-s>` / `<D-x>` / `<D-p>` として Neovim に届きます
+- `Cmd+V`: Ghostty 標準の `paste_from_clipboard` のままです。Neovim 側では定義せず、Ghostty の貼り付けを使います（シェルでも従来どおり）
+- Neovim の中で Ghostty 自体の選択（Neovim ではなく画面の文字を選ぶ）をしたいときは、Shift を押しながらドラッグします。`mouse-shift-capture` の既定（`false`）では Shift がアプリに送られず、Ghostty の選択になります
 - 設定ファイル: `keymaps.ghostty`
 
 ### 6. 環境変数

@@ -1,0 +1,11 @@
+{
+  "commands": [
+    "perl -e 'alarm 60; exec @ARGV' bash tests/check_lua_syntax.sh",
+    "perl -e 'alarm 60; exec @ARGV' ghostty +validate-config --config-file=ghostty/config.ghostty",
+    "perl -e 'alarm 30; exec @ARGV' bash -n nvim/setup.sh && perl -e 'alarm 30; exec @ARGV' bash -n ghostty/setup.sh",
+    "perl -e 'alarm 30; exec @ARGV' python3 tests/kitty_super_key_test.py",
+    "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_modeless_test.sh",
+    "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_explorer_test.sh",
+    "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_terminal_test.sh"
+  ]
+}
