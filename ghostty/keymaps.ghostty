@@ -21,3 +21,26 @@ keybind = super+b=text:\x1e
 # Cmd+T で Ghostty の新しいタブを開く（Neovim を開いていても Ghostty が先に処理する）
 # Ghostty 標準と同じ割り当てだが、意図した割り当てとして明示しておく
 keybind = super+t=new_tab
+
+# Cmd+Z / Cmd+Shift+Z / Cmd+A / Cmd+F を Neovim に <D-...> として届ける
+# Neovim 0.10+ の TUI は起動時に kitty キーボードプロトコルを有効にし、
+# Ghostty で未割り当ての Cmd キーを CSI ... u（<D-...>）として受け取れる。
+# Ghostty 標準の割り当てが残っていると Ghostty が先に処理して Neovim に届かないため unbind する。
+# その代わり、Neovim の外（zsh など）では Ghostty 標準の「閉じたタブを戻す (Cmd+Z)」
+# 「全選択 (Cmd+A)」「画面内検索 (Cmd+F)」が効かなくなる。
+# 閉じたタブの復元は Cmd+Shift+T（Ghostty 既定の undo）で代用できる。
+keybind = super+z=unbind
+keybind = super+shift+z=unbind
+keybind = super+a=unbind
+keybind = super+f=unbind
+
+# Cmd+C: Ghostty 側に選択があるとき（シェルなど）は従来どおりコピーし、
+# 選択が無いとき（Neovim がマウスを握っていて Ghostty 側に選択が無い）は
+# キーを消費せず Neovim に <D-c> として渡す。
+# performable: は「その操作が実行できるときだけ入力を受け取る」指定。
+# これにより、Neovim の外での「選択が無いときの Cmd+C」は何も起きない。
+keybind = performable:super+c=copy_to_clipboard:mixed
+
+# Cmd+Shift+J を Neovim に <D-J> として届け、右側ターミナルの下に新しいターミナルを開く。
+# Ghostty 標準の Cmd+Shift+J（画面の内容をファイルに書き出し、そのパスを貼り付ける）は使えなくなる。
+keybind = super+shift+j=unbind
