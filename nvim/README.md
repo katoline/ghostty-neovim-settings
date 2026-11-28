@@ -9,6 +9,8 @@ LazyVim 用の追加設定です。
 - Cmd ショートカット: Cmd+S 保存、Cmd+Z / Cmd+Shift+Z 元に戻す / やり直す、Cmd+C / Cmd+X / Cmd+V / Cmd+A、Cmd+F ファイル内検索、Cmd+P ファイル名検索（`keymaps.lua`。Ghostty と Neovim 0.10 以降が必要）
 - ファイル一覧（Snacks explorer）: クリック 1 回でファイルを開く / フォルダを開閉する。ダブルクリックでの確定は無効。ファイルを開いても一覧は開いたまま（`nvim.lua`）
 - ドットファイル・gitignore されたファイルの表示: ファイル一覧・ファイル名検索（Cmd+P / `<leader>ff`）・grep（`<leader>/` / `<leader>sg` / `<leader>sw`）で、`.claude/` のようなドットファイルと `.gitignore` されたファイルも既定で表示する。`.git` の中身は表示しない。ファイル一覧では `H` / `I` で隠しファイル・gitignore 対象の表示を切り替えられる（`nvim.lua`）
+- 変更行の見分け（gitsigns）: 保存前の変更を、左端の太いバー（追加・変更 `┃`、削除 `_`）・行番号の色・行全体の薄い着色で表示する。Git 管理下のファイルが対象（`nvim.lua`）
+- 未保存のバッファの見分け（bufferline）: タブ一覧で、未保存のファイルの右側に黄色い `✱` が付く。保存済みのファイルには付かない（`nvim.lua`）
 - 右側のターミナル: Cmd+J / `<C-/>` で列ごと開閉、Cmd+Shift+J で一番下に追加（`keymaps.lua` と `ghostty/keymaps.ghostty`）
 - toggleterm.nvim の導入（`nvim.lua`）
 - `<leader>tv`: 右側にターミナルを縦分割で開く（`keymaps.lua`）
@@ -39,7 +41,7 @@ chmod +x setup.sh
 
 ## ファイルの役割
 
-- **nvim.lua**: lazy.nvim のプラグイン spec（toggleterm.nvim と、Snacks explorer のクリック操作）
+- **nvim.lua**: lazy.nvim のプラグイン spec（toggleterm.nvim、Snacks explorer のクリック操作、gitsigns の差分表示、bufferline の未保存マーク）
 - **keymaps.lua**: 追加のキーマップ（モードレス、Cmd ショートカット、右側ターミナルの開閉・追加）
 - **setup.sh**: セットアップスクリプト
 - **KEYMAPS.md**: キーボードショートカット一覧
@@ -56,6 +58,7 @@ bash tests/run_nvim_modeless_test.sh   # モードレス・Esc・Ctrl+O・Cmd �
 bash tests/run_nvim_explorer_test.sh   # ファイル一覧のクリック
 bash tests/run_nvim_hidden_files_test.sh  # ドットファイル・gitignore 対象の表示
 bash tests/run_nvim_terminal_test.sh   # 右側ターミナルの開閉・追加
+bash tests/run_nvim_diff_status_test.sh  # 変更行のサイン・行番号・未保存マークの設定
 bash tests/check_lua_syntax.sh         # Lua の構文チェック
 python3 tests/kitty_super_key_test.py  # super キーが <D-...> として届くかの確認
 ```

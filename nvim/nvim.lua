@@ -79,4 +79,37 @@ return {
 			},
 		},
 	},
+	{
+		"lewis6991/gitsigns.nvim", -- 変更行を左端のサインで表示するプラグイン
+		-- 変更行を「左端の太いバー・行番号の色・行全体の薄い着色」で見分けられるようにする。
+		-- 追加・変更は縦バー、削除は下線、削除と変更が同じ行なら ~、未追跡は点線風の記号にする。
+		-- 未追跡ファイルは gitsigns の既定ではサインの対象外（attach_to_untracked = false）。
+		opts = {
+			signs = {
+				add = { text = "┃" },
+				change = { text = "┃" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked = { text = "┆" },
+			},
+			numhl = true, -- 行番号を変更種別の色で着色する
+			linehl = true, -- 変更行の行全体を薄く着色する
+		},
+	},
+	{
+		"akinsho/bufferline.nvim", -- バッファをタブ一覧として表示するプラグイン
+		-- 未保存のバッファをタブ一覧で目立たせる。
+		-- #e0af68 は tokyonight の黄（警告と同じ色）。背景色は指定せず、bufferline の既定の背景を残す。
+		opts = {
+			options = {
+				modified_icon = "✱", -- 未保存のバッファに付く記号
+			},
+			highlights = {
+				modified = { fg = "#e0af68", bold = true },
+				modified_visible = { fg = "#e0af68", bold = true },
+				modified_selected = { fg = "#e0af68", bold = true },
+			},
+		},
+	},
 }
