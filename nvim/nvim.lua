@@ -1,6 +1,6 @@
 -- lazy.nvim のプラグイン spec
 -- ~/.config/nvim/lua/plugins/terminal.lua としてリンクされ、LazyVim が読み込む。
--- Neovim 内ターミナル（toggleterm）と、Snacks explorer のマウス操作を設定する。
+-- Neovim 内ターミナル（toggleterm）と、Snacks のファイル一覧・ピッカーの表示を設定する。
 return {
 	{
 		"akinsho/toggleterm.nvim", -- Neovim 内ターミナルのプラグイン
@@ -13,6 +13,12 @@ return {
 			picker = {
 				sources = {
 					explorer = {
+						-- ドットファイル（.claude/ など）と .gitignore されたファイルも表示する。
+						-- 隠したいときは、一覧で H（hidden）/ I（ignored）を押して切り替える。
+						hidden = true,
+						ignored = true,
+						-- .git の中身は表示しない（ファイル名検索・grep も .git を除く）
+						exclude = { ".git" },
 						win = {
 							list = {
 								keys = {
@@ -53,6 +59,21 @@ return {
 								picker:action("confirm")
 							end,
 						},
+					},
+					-- ファイル名検索（Cmd+P・<leader>ff など）と grep（<leader>/・<leader>sg・<leader>sw など）でも、
+					-- ドットファイル（.claude/ など）と .gitignore されたファイルを表示する。
+					-- .git は Snacks が fd / rg の引数で除外している。
+					files = {
+						hidden = true,
+						ignored = true,
+					},
+					grep = {
+						hidden = true,
+						ignored = true,
+					},
+					grep_word = {
+						hidden = true,
+						ignored = true,
 					},
 				},
 			},
