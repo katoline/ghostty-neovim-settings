@@ -6,6 +6,7 @@
     "perl -e 'alarm 30; exec @ARGV' python3 tests/kitty_super_key_test.py",
     "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_modeless_test.sh",
     "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_explorer_test.sh",
+    "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_hidden_files_test.sh",
     "perl -e 'alarm 180; exec @ARGV' bash tests/run_nvim_terminal_test.sh"
   ]
 }
